@@ -1,0 +1,43 @@
+
+  
+  .body {
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    form {
+      .register {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        mat-form-field,
+        button {
+          width: 100%;
+        }
+
+        .submit {
+          background-color: #25d366;
+          padding: 12px;
+          border: none;
+          border-radius: 12px;
+          color: #fff;
+          cursor: pointer;
+          margin: 10px;
+        }
+        .registerPath {
+          background-color: #0288d1;
+          border-radius: 7px;
+          padding: 5px;
+          cursor: pointer;
+          color: #fff;
+        }
+        .error-msg {
+          color: red;
+          font-size: 17px;
+        }
+      }
+    }
+  }
+
