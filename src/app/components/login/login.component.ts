@@ -40,7 +40,6 @@ export class LoginComponent implements OnInit {
           this.authSvc.username = res.username;
           this.router.navigateByUrl('/main');
         } else {
-          console.log('error al logearse', res);
           this.error = true;
         }
       },
