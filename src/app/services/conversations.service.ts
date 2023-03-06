@@ -1,12 +1,12 @@
 import { AuthenticationService } from './authentication.service';
 import { SocketsService } from './sockets.service';
-import { Injectable, EventEmitter, Output } from '@angular/core';
+import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ConversationsService {
-  chats: any[] = [
+  chats: Array<any> = [
     {
       name: 'Start',
       time: '8:20 AM',
@@ -40,11 +40,6 @@ export class ConversationsService {
   }
   onReceiveMessage() {
     this.socket.io.on('receiveMessage', (messageInfo) => {
-      // console.log(messageInfo)
-      // if ((this.authSvc.username = messageInfo.username)) {
-      //   console.log("no se")
-      //   messageInfo.me = true;
-      // }
       let chatAlreadyExist = this.chats.find((e) => e.name == messageInfo.name);
       if (chatAlreadyExist) {
         chatAlreadyExist.latestMessage = messageInfo.latestMessage;

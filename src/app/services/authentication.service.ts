@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class AuthenticationService {
-  username:any="";
+  username:string="";
   constructor(private http: HttpClient) {}
 
   register(body: any): Observable<any> {

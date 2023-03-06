@@ -1,5 +1,4 @@
 import { AuthGuardGuard } from './../../guards/auth-guard.guard';
-import { ConversationsService } from './../../services/conversations.service';
 import { Router } from '@angular/router';
 import { AuthenticationService } from './../../services/authentication.service';
 import { Component, OnInit } from '@angular/core';
@@ -37,10 +36,9 @@ export class LoginComponent implements OnInit {
     this.authSvc.login(body).subscribe({
       next: (res) => {
         if (res.success) {
-          this.guard.token = res.id;
+          this.guard.token = res.token;
           this.authSvc.username = res.username;
           this.router.navigateByUrl('/main');
-          console.log(res);
         } else {
           console.log('error al logearse', res);
           this.error = true;

@@ -1,4 +1,3 @@
-import { AuthenticationService } from './../services/authentication.service';
 import { Injectable } from '@angular/core';
 import {
   ActivatedRouteSnapshot,
@@ -13,9 +12,9 @@ import { Observable } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthGuardGuard implements CanActivate {
-  token: any = null;
+  token!:string;
   loged: boolean = false;
-  constructor(private authSvc: AuthenticationService, private router: Router) {}
+  constructor( private router: Router) {}
 
   redirect(flag: boolean) {
     if (!flag) {
@@ -31,10 +30,9 @@ export class AuthGuardGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    if (this.token === null) {
+    if (this.token === undefined) {
       this.redirect(this.loged);
     } else {
-      console.log(this.token)
       this.loged = true;
       this.redirect(this.loged);
     }

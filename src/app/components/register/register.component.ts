@@ -1,3 +1,4 @@
+import { AuthGuardGuard } from './../../guards/auth-guard.guard';
 import { Routes, Router } from '@angular/router';
 import { AuthenticationService } from './../../services/authentication.service';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -17,7 +18,8 @@ export class RegisterComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private authSvc: AuthenticationService,
-    private router: Router
+    private router: Router,
+    private guard: AuthGuardGuard
   ) {
     this.form = this.fb.group({
       user: ['', Validators.required],
@@ -34,8 +36,9 @@ export class RegisterComponent implements OnInit {
     this.authSvc.register(body).subscribe({
       next: (res) => {
         if (res.success === true) {
-          console.log('registrado con exito', res);
-          this.router.navigateByUrl('/login');
+          this.guard.token = res.token;
+          this.authSvc.username = res.username;
+          this.router.navigateByUrl('/main');
         } else {
           this.error = true;
         }
