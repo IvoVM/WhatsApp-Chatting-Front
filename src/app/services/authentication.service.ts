@@ -8,6 +8,7 @@ import { Injectable } from '@angular/core';
 })
 export class AuthenticationService {
   username:string="";
+  perfilImg?:string;
   constructor(private http: HttpClient) {}
 
   register(body: any): Observable<any> {

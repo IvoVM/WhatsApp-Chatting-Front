@@ -32,6 +32,8 @@ export class RegisterComponent implements OnInit {
     const body = {
       userName: this.form.value.user,
       password: this.form.value.password,
+      perfilImg:
+        'https://www.google.com/url?sa=i&url=https%3A%2F%2Fstock.adobe.com%2Far%2Fsearch%3Fk%3Ddefault%2520profile&psig=AOvVaw3JBzqfs26tb-ZShXm7fbhA&ust=1678236361611000&source=images&cd=vfe&ved=0CBAQjRxqFwoTCOCb-OPLyP0CFQAAAAAdAAAAABAR',
     };
     this.authSvc.register(body).subscribe({
       next: (res) => {

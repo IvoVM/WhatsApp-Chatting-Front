@@ -1,5 +1,7 @@
+import { AuthGuardGuard } from './../../guards/auth-guard.guard';
 import { ConversationsService } from './../../services/conversations.service';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -9,98 +11,9 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 export class SidebarComponent implements OnInit {
   public searchText!: string;
   @Output() conversationClicked: EventEmitter<any> = new EventEmitter();
-  public conversations: Array<any> = [
-    {
-      name: 'David',
-      time: '8:20 AM',
-      latestMessage: 'Good Morning!',
-      latestMessageRead: true,
-      messages: [
-        { id: 1, body: 'good and you?', time: '8:30', me: true },
-        { id: 2, body: 'how are you?', time: '8:30', me: false },
-        { id: 3, body: 'Hi', time: '8:30', me: true },
-      ],
-    },
-    {
-      name: 'Carlos',
-      time: '8:20 AM',
-      latestMessage: 'Good Morning!',
-      latestMessageRead: false,
-      messages: [
-        { id: 1, body: 'good and you?', time: '8:30', me: true },
-        { id: 2, body: 'how are you?', time: '8:30', me: false },
-        { id: 3, body: 'Hi', time: '8:30', me: true },
-      ],
-    },
-    {
-      name: 'Juliana',
-      time: '8:20 AM',
-      latestMessage: 'Good Morning!',
-      latestMessageRead: true,
-      messages: [
-        { id: 1, body: 'good and you?', time: '8:30', me: true },
-        { id: 2, body: 'how are you?', time: '8:30', me: false },
-        { id: 3, body: 'Hi', time: '8:30', me: true },
-      ],
-    },
-    {
-      name: 'Alice',
-      time: '8:20 AM',
-      latestMessage: 'Good Morning!',
-      latestMessageRead: true,
-      messages: [
-        { id: 1, body: 'good and you?', time: '8:30', me: true },
-        { id: 2, body: 'how are you?', time: '8:30', me: false },
-        { id: 3, body: 'Hi', time: '8:30', me: true },
-      ],
-    },
-    {
-      name: 'Ivo',
-      time: '8:20 AM',
-      latestMessage: 'Do you like this app?',
-      latestMessageRead: true,
-      messages: [
-        { id: 1, body: 'good and you?', time: '8:30', me: true },
-        { id: 2, body: 'how are you?', time: '8:30', me: false },
-        { id: 3, body: 'Hi', time: '8:30', me: true },
-      ],
-    },
-    {
-      name: 'David',
-      time: '8:20 AM',
-      latestMessage: 'Good Morning!',
-      latestMessageRead: true,
-      messages: [
-        { id: 1, body: 'good and you?', time: '8:30', me: true },
-        { id: 2, body: 'how are you?', time: '8:30', me: false },
-        { id: 3, body: 'Hi', time: '8:30', me: true },
-      ],
-    },
-    {
-      name: 'David',
-      time: '8:20 AM',
-      latestMessage: 'Good Morning!',
-      latestMessageRead: true,
-      messages: [
-        { id: 1, body: 'good and you?', time: '8:30', me: true },
-        { id: 2, body: 'how are you?', time: '8:30', me: false },
-        { id: 3, body: 'Hi', time: '8:30', me: true },
-      ],
-    },
-    {
-      name: 'David',
-      time: '8:20 AM',
-      latestMessage: 'Good Morning!',
-      latestMessageRead: true,
-      messages: [
-        { id: 1, body: 'good and you?', time: '8:30', me: true },
-        { id: 2, body: 'how are you?', time: '8:30', me: false },
-        { id: 3, body: 'Hi', time: '8:30', me: true },
-      ],
-    },
-  ];
+  public conversations: Array<any> = [];
 
-  constructor(private convSvc: ConversationsService) {}
+  constructor(private convSvc: ConversationsService, public authSvc:AuthenticationService) {}
 
   ngOnInit(): void {
     this.conversations = this.convSvc.chats;
