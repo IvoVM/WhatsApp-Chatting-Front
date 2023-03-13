@@ -1,3 +1,4 @@
+import { ConversationsService } from './../../services/conversations.service';
 import { AuthGuardGuard } from './../../guards/auth-guard.guard';
 import { Routes, Router } from '@angular/router';
 import { AuthenticationService } from './../../services/authentication.service';
@@ -19,7 +20,8 @@ export class RegisterComponent implements OnInit {
     private fb: FormBuilder,
     private authSvc: AuthenticationService,
     private router: Router,
-    private guard: AuthGuardGuard
+    private guard: AuthGuardGuard,
+    private ConversationsService: ConversationsService
   ) {
     this.form = this.fb.group({
       user: ['', Validators.required],
@@ -38,9 +40,7 @@ export class RegisterComponent implements OnInit {
     this.authSvc.register(body).subscribe({
       next: (res) => {
         if (res.success === true) {
-          this.guard.token = res.token;
-          this.authSvc.username = res.username;
-          this.router.navigateByUrl('/main');
+          this.router.navigateByUrl('/login');
         } else {
           this.error = true;
         }

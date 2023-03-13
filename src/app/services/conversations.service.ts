@@ -6,35 +6,39 @@ import { Injectable } from '@angular/core';
   providedIn: 'root',
 })
 export class ConversationsService {
-  chats: Array<any> = [
-    {
-      name: 'Start',
-      time: '8:20 AM',
-      latestMessage: 'Click on me!',
-      latestMessageRead: true,
-      messages: [
-        {
-          id: 1,
-          body: 'To start this app',
-          time: '8:30',
-          me: false,
-        },
-        { id: 2, body: 'please send a message here', time: '8:30', me: false },
-        {
-          id: 3,
-          body: 'and respond to yourself from another window',
-          time: '8:30',
-          me: false,
-        },
-      ],
-    },
+  chats: any[] = [
+    // {
+    //   name: 'Start',
+    //   time: '8:20 AM',
+    //   latestMessage: 'Click on me!',
+    //   latestMessageRead: true,
+    //   messages: [
+    //     {
+    //       id: 1,
+    //       body: 'To start this app',
+    //       time: '8:30',
+    //       me: false,
+    //     },
+    //     { id: 2, body: 'please send a message here', time: '8:30', me: false },
+    //     {
+    //       id: 3,
+    //       body: 'and respond to yourself from another window',
+    //       time: '8:30',
+    //       me: false,
+    //     },
+    //   ],
+    // },
   ];
   constructor(
     private socket: SocketsService,
-    private authSvc: AuthenticationService
+    private a: AuthenticationService
+    
   ) {
     this.onReceiveMessage();
   }
+
+  
+
   sendMessage(messageInfo?: any) {
     this.socket.io.emit('sendMessage', messageInfo);
   }

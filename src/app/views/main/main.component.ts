@@ -13,7 +13,8 @@ export class MainComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  onConversationSelected(conversation: Object) {
+  onConversationSelected(conversation: any) {
     this.conversation = conversation;
+    console.log(this.conversation);
   }
 }

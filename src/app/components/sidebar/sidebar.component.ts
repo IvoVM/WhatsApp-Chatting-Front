@@ -1,7 +1,5 @@
-import { AuthGuardGuard } from './../../guards/auth-guard.guard';
 import { ConversationsService } from './../../services/conversations.service';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { AuthenticationService } from 'src/app/services/authentication.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -11,12 +9,14 @@ import { AuthenticationService } from 'src/app/services/authentication.service';
 export class SidebarComponent implements OnInit {
   public searchText!: string;
   @Output() conversationClicked: EventEmitter<any> = new EventEmitter();
-  public conversations: Array<any> = [];
+  public conversations:any[] = [];
 
-  constructor(private convSvc: ConversationsService, public authSvc:AuthenticationService) {}
+  
+  constructor(private convSvc: ConversationsService) {}
 
   ngOnInit(): void {
     this.conversations = this.convSvc.chats;
+    console.log(this.conversations)
   }
 
   get filteredConversations() {

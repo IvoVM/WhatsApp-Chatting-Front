@@ -36,7 +36,6 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     MatIconModule,
     MatProgressSpinnerModule,
     HttpClientModule,
-     
   ],
   providers: [],
   bootstrap: [AppComponent]
