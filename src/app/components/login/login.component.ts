@@ -30,14 +30,14 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {}
-  getChats(arreglo: Array<string>, username: string): Array<string> {
-    arreglo = arreglo.filter(function (i: any) {
-      return i.userName.toString() !== username;
+  getChats(chatsList: Array<string>, username: string): Array<string> {
+    chatsList = chatsList.filter(function (chat:any) {
+      return chat.userName.toString() !== username;
     });
-    return arreglo;
+    return chatsList;
   }
 
-  login() {
+  login():void {
     const body = {
       userName: this.form.value.user,
       password: this.form.value.password,

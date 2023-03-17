@@ -11,17 +11,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
-  hide = true;
-  load = true;
-  error = false;
+  hide:boolean = true;
+  load:boolean = true;
+  error:boolean = false;
   public form!: FormGroup;
 
   constructor(
     private fb: FormBuilder,
     private authSvc: AuthenticationService,
     private router: Router,
-    private guard: AuthGuardGuard,
-    private ConversationsService: ConversationsService
   ) {
     this.form = this.fb.group({
       user: ['', Validators.required],
@@ -30,7 +28,7 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit(): void {}
-  register() {
+  register():void {
     const body = {
       userName: this.form.value.user,
       password: this.form.value.password,
