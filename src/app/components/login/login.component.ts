@@ -30,15 +30,16 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit(): void {}
-  getChats(chatsList: Array<string>, username: string): Array<string> {
-    chatsList = chatsList.filter(function (chat:any) {
-      return chat.userName.toString() !== username;
-    });
-    return chatsList;
-  }
 
-  login():void {
-    const body = {
+  // getChats(chatsList: Array<string>, username: string): Array<any> {
+  //   chatsList = chatsList.filter(function (chat: any) {
+  //     return chat.userName.toString() !== username;
+  //   });
+  //   return chatsList;
+  // }
+
+  login(): void {
+    let body = {
       userName: this.form.value.user,
       password: this.form.value.password,
     };
@@ -46,9 +47,7 @@ export class LoginComponent implements OnInit {
       next: (res) => {
         if (res.success === true) {
           this.guard.token = res.token;
-          this.authSvc.username = res.username;
-          let chats = this.getChats(res.users, res.username);
-          this.ConversationsService.chats = chats;
+          this.ConversationsService.logedUser(res.username);
           this.router.navigateByUrl('/main');
         } else {
           this.error = true;
